@@ -13,7 +13,7 @@
 #        fields = '__all__'
 
 
-from .models import Listing, Booking, User, Review
+from .models import Listing, Booking, Review, User
 from rest_framework import serializers
 
 
