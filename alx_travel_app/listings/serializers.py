@@ -1,13 +1,44 @@
+#from rest_framework import serializers
+#from .models import Listing, Booking
+
+#class ListingSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Listing
+#        fields = '__all__'
+
+
+#class BookingSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Booking
+#        fields = '__all__'
+
+
+from .models import Listing, Booking, User, Review
 from rest_framework import serializers
-from .models import Listing, Booking
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email', 'phone_number', 'role', 'created_at']
+        
+class ReviewSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id', 'user', 'listing', 'rating', 'comment', 'created_at']
 
 class ListingSerializer(serializers.ModelSerializer):
+    host = UserSerializer(read_only=True)
+    reviews = ReviewSerializer(many=True, read_only=True) 
+    
     class Meta:
         model = Listing
-        fields = '__all__'
-
+        fields = ["id", 'name', 'description', 'location', 'price_per_night', 'created_at', 'updated_at']
 
 class BookingSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    listing = ListingSerializer(read_only=True)
+    
     class Meta:
         model = Booking
-        fields = '__all__'
+        fields = ['id', 'listing', 'start_date', 'end_date', 'status', 'created_at']
