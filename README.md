@@ -1,20 +1,27 @@
+# alx_travel_app_0x01
 
-# ALX Travel App - Milestone: Models, Serializers, and Seeder
+This Django project provides a REST API for managing travel listings and bookings.
 
-This milestone implements:
+## Features
 
-- ✅ **Listing, Booking, and Review models** with appropriate relationships and fields.
-- ✅ **Serializers** for Listing and Booking to support API endpoints.
-- ✅ **Custom seeder command** to populate the database with sample listings.
+- CRUD API for Listings and Bookings
+- RESTful endpoints with Django REST Framework
+- Swagger UI for documentation
 
-### 🔍 Models Overview
+## Endpoints
 
-- **Listing**: title, description, location, price_per_night, available, created_at
-- **Booking**: ForeignKey to Listing, user info, check-in/out
-- **Review**: ForeignKey to Listing, user name, rating, comment
+| Method | Endpoint            | Description              |
+|--------|---------------------|--------------------------|
+| GET    | /api/listings/      | List all listings        |
+| POST   | /api/listings/      | Create new listing       |
+| GET    | /api/bookings/      | List all bookings        |
+| POST   | /api/bookings/      | Create new booking       |
 
-### 📦 Seeder Command
+## API Documentation
 
-To populate database with demo listings:
+Visit `/swagger/` for interactive Swagger UI.
+
+## Setup
+
 ```bash
-python manage.py seed
+python manage.py runserver# alx_travel_app_0x01
